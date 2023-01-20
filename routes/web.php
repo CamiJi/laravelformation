@@ -14,7 +14,11 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [PostController::class, 'index'])->name('welcome');
+Route::get('/posts/{id}', [PostController::class, 'show'])->whereNumber('id');
+Route::get('/contact', [PostController::class, 'contact'])->name('contact');
+
+
 // Route::get('posts', function () {
 //     return response()->json([
 //         'title' => 'Laravel 8',
@@ -25,4 +29,6 @@ Route::get('/', [PostController::class, 'index']);
 // Route::get('articles', function (){
 //     return view('articles');
 // });
+
+
 
