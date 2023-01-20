@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class, 'index']);
+// Route::get('posts', function () {
+//     return response()->json([
+//         'title' => 'Laravel 8',
+//         'content' => 'Laravel 8 is the latest version of Laravel'
+//     ]);
+// });
 
-Route::get('posts', function () {
-    return response()->json([
-        'title' => 'Laravel 8',
-        'content' => 'Laravel 8 is the latest version of Laravel'
-    ]);
-});
-
-Route::get('articles', function (){
-    return view('articles');
-});
+// Route::get('articles', function (){
+//     return view('articles');
+// });
 
