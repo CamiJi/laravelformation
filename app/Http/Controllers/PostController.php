@@ -2,38 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index () {
 
-        $posts = [
-            'Mon premier post',
-            'Mon deuxième post'
-        ];
-
-        $title = 'Mon super Tiiiiitre';
-        $title2 = 'Mon second Titre';
-
-        // return view('articles', compact('title', 'title2'));
-        // return view('articles')->with('title', $title);
-
-        // return view('articles', [
-        //     'title' => $title,
-        //     'title2' => $title2
+        // $post = Post::find(1);
+        // $post->update([
+        //     'title' => 'Mon titre modifié'
         // ]);
 
-        return view('articles', compact('posts', 'title', 'title2'));
+        $post = Post::find(10);
+        $post->delete();
+        dd($post);
+
+        // $posts = Post::all();
+
+        $posts = Post::orderBy('created_at', 'desc')->take(3)->get();
+
+        return view('articles', [
+            'posts' => $posts
+        ]);
+
+        // dd($posts);
+        
+        // return view('articles', [
+            //     'title' => $title,
+            //     'title2' => $title2
+            // ]);
+            
+        // return view('articles')->with('title', $title);
+        // return view('articles', compact('posts', 'title', 'title2'));
     }
 
     public function show($id){
-        $posts = [
-            1 => 'Mon titre n°1',
-            2 => 'Mon titre n°2'
-        ];
+        // $posts = [
+        //     1 => 'Mon titre n°1',
+        //     2 => 'Mon titre n°2'
+        // ];
 
-        $post = $posts[$id] ?? 'Pas de post trouvé';
+        // $post = $posts[$id] ?? 'Pas de post trouvé';
+
+
+        $post = Post::findOrFail($id); //FinfOrFail() renvoie une erreur 404 si l'id n'existe pas
+        // $post = Post::where('title', '=', '')->firstOrFail();
 
         return view('article',[
             'post' => $post
@@ -43,4 +57,28 @@ class PostController extends Controller
     public function contact(){
         return view('contact');
     }
+
+    public function create(){
+        return view('form');
+    }
+
+    public function store(Request $request ){
+        // dd($request->title);
+
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->content = $request->content;
+        // $post->save();
+
+        //Pour utiliser ::create() il faut définir $fillable dans le model 
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content
+        ]);
+
+
+
+        // dd($post);
+        // dd($request->input('content'));
+    } 
 }

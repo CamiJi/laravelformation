@@ -15,10 +15,16 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('welcome');
-Route::get('/posts/{id}', [PostController::class, 'show'])->whereNumber('id');
+
 Route::get('/contact', [PostController::class, 'contact'])->name('contact');
 
+Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
+Route::post('/posts/create', [PostController::class, 'store'])->name('post.store');
+Route::get('/posts/{id}', [PostController::class, 'show'])->whereNumber('id')->name('post.show');
 
+
+
+// Route::get('/posts/{id}', [PostController::class, 'show'])->whereNumber('id');
 // Route::get('posts', function () {
 //     return response()->json([
 //         'title' => 'Laravel 8',

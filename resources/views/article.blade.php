@@ -2,6 +2,6 @@
 
 
 @section('content')
-<h3>{{ $post }}</h3>
+<h3>{{ $post->content }}</h3>
 
 @endsection
