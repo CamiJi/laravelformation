@@ -14,13 +14,15 @@ class PostController extends Controller
         //     'title' => 'Mon titre modifié'
         // ]);
 
-        $post = Post::find(10);
-        $post->delete();
-        dd($post);
+        // $post = Post::find(10);
+        // $post->delete();
+        // dd($post);
 
-        // $posts = Post::all();
+        // $posts = Post::orderBy('created_at', 'desc')->take(3)->get();
+        
+        
+        $posts = Post::all();
 
-        $posts = Post::orderBy('created_at', 'desc')->take(3)->get();
 
         return view('articles', [
             'posts' => $posts
