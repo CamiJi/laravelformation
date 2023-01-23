@@ -21,8 +21,19 @@
 @empty
 
 <div>Pas de commentaires</div>
-    
+
 @endforelse
+
+<hr>
+
+@forelse($post->tags as $tag)
+
+<div>{{$tag->name}}</div>
+
+@empty
+<div>Pas de Tag sur ce post</div>
+@endforelse
+
 
 
 

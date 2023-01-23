@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Tag;
 use App\Models\Image;
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
@@ -13,11 +14,18 @@ class Post extends Model
 
     protected $fillable = ['title', 'content'];
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function Image(){
+    public function Image()
+    {
         return $this->hasOne(Image::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
