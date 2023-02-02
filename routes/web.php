@@ -20,6 +20,8 @@ Route::get('/contact', [PostController::class, 'contact'])->name('contact');
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/posts/create', [PostController::class, 'store'])->name('post.store');
+
+Route::get('/register', [PostController::class, 'register']);
 Route::get('/posts/{id}', [PostController::class, 'show'])->whereNumber('id')->name('post.show');
 
 
@@ -35,6 +37,3 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->whereNumber('id')->n
 // Route::get('articles', function (){
 //     return view('articles');
 // });
-
-
-

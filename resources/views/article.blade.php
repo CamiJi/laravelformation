@@ -13,6 +13,8 @@
 
 @endforeach --}}
 
+
+
 @forelse ($post->comments as $comment)
 
 <div>{{$comment->content}} | crée le {{ $comment->created_at->format('d-m-Y')}}</div>
@@ -23,6 +25,12 @@
 <div>Pas de commentaires</div>
 
 @endforelse
+
+
+
+
+<hr>
+
 
 <hr>
 
